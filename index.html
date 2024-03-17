@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
+    <meta charset="UTF-8">
     <title>Turmberechnung von Mama für S & F</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0e8f2;
             text-align: center;
+            margin: 0;
             padding: 20px;
         }
         table {
@@ -28,6 +30,7 @@
             background-color: #ff85a2;
             color: white;
             cursor: pointer;
+            font-weight: bold;
         }
         input[type="button"]:hover {
             background-color: #ff6090;
@@ -42,55 +45,57 @@
             font-size: 16px;
             color: #333;
         }
+        .copyright {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <h2>❤️ Turmberechnung von Mama für S & F ❤️</h2>
-    <form name="turm">
-        <p>Anfangswert:<br><input type="text" id="start"></p>
-        <p>Turmhöhe:<br><input type="text" id="height"></p>
+    <form name="turm" onsubmit="return false;">
+        <p>Anfangswert:<br><input type="text" id="start" required></p>
+        <p>Turmhöhe:<br><input type="text" id="height" required></p>
         <p><input type="button" value="Berechnen" onclick="calculateTower()"></p>
     </form>
     <div id="message" class="result-message"></div>
-    <img src="https://raw.githubusercontent.com/ifiwasyouiwannabemeto/for-my-girls/main/hund.jpg" alt="Unser Hund">
-    <table border="1" cellpadding="1" cellspacing="0" id="towerResult"></table>
+    <img src="https://raw.githubusercontent.com/ifiwasyouiwannabemeto/for-my-girls/main/hund.jpg" alt="Unser Hund Bella">
+    <table id="towerResult"></table>
+    <script>
+        function calculateTower() {
+            var start = document.getElementById('start').value;
+            var height = document.getElementById('height').value;
+            var result = '';
+
+            if (!isNaN(start) && !isNaN(height) && height >= 2) {
+                start = parseInt(start);
+                height = parseInt(height);
+                var current = start;
+
+                for (var i = 2; i <= height; i++) {
+                    current *= i;
+                    result += '<tr><td>' + start + ' x ' + i + '</td><td>' + current + '</td></tr>';
+                    start = current;
+                }
+
+                for (var i = 2; i <= height; i++) {
+                    current /= i;
+                    result += '<tr><td>' + start + ' : ' + i + '</td><td>' + Math.round(current) + '</td></tr>';
+                    start = current;
+                }
+
+                document.getElementById('message').innerHTML = 'Bella hat deine Aufgabe erledigt - du findest die Lösungen nun unter ihrem Bild.';
+            } else {
+                result = '<tr><td colspan="2">Bitte gültige Zahlen eingeben und sicherstellen, dass die Turmhöhe mindestens 2 ist.</td></tr>';
+                document.getElementById('message').innerHTML = '';
+            }
+
+            document.getElementById('towerResult').innerHTML = result;
+        }
+    </script>
+    <footer>
+        <p class="copyright">&copy; 2024 S. K.</p>
+    </footer>
 </body>
-
-<script>
-function calculateTower() {
-    var start = document.getElementById('start').value;
-    var height = document.getElementById('height').value;
-    var result = '';
-    var operation = '';
-
-    if (!isNaN(start) && !isNaN(height) && height >= 2) {
-        start = parseInt(start);
-        height = parseInt(height);
-        var current = start;
-
-        // Multiplikation
-        for (var i = 2; i <= height; i++) {
-            current *= i;
-            result += '<tr><td>' + start + ' x ' + i + '</td><td>' + current + '</td></tr>';
-            start = current; // Update start for the next iteration
-        }
-
-        // Division
-        for (var i = 2; i <= height; i++) {
-            current /= i;
-            result += '<tr><td>' + start + ' : ' + i + '</td><td>' + Math.round(current) + '</td></tr>';
-            start = current; // Update start for the next iteration
-        }
-
-        // Nachricht unter dem Berechnen-Button
-        document.getElementById('message').innerHTML = 'Bella hat deine Aufgabe erledigt - du findest die Lösungen nun unter ihrem Bild.';
-    } else {
-        result = '<tr><td colspan="2">Bitte gültige Zahlen eingeben und sicherstellen, dass die Turmhöhe mindestens 2 ist</td></tr>';
-        document.getElementById('message').innerHTML = ''; // Nachricht verbergen, falls Eingaben ungültig sind
-    }
-
-    document.getElementById('towerResult').innerHTML = result;
-}
-</script>
-
 </html>

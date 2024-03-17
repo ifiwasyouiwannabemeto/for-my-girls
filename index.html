@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Turmberechnung von Mama für S & F</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0e8f2;
+            text-align: center;
+            padding: 20px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #999;
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            background-color: #ff85a2;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="button"]:hover {
+            background-color: #ff6090;
+        }
+        h2 {
+            color: #ff85a2;
+            font-family: 'Arial', sans-serif;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 90%; /* Passt die Bildgröße an, damit es nicht zu breit wird */
+            height: auto; /* Erhält das Seitenverhältnis */
+        }
+    </style>
+</head>
+<body>
+    <h2>❤️ Turmberechnung von Mama für S & F ❤️</h2>
+    <!-- Bild einfügen -->
+    <img src="URL_ZUM_BILD" alt="Unser Hund">
+    <form name="turm">
+        <p>Anfangswert:<br><input type="text" id="start"></p>
+        <p>Turmhöhe:<br><input type="text" id="height"></p>
+        <p><input type="button" value="Berechnen" onclick="calculateTower()"></p>
+    </form>
+    <table border="1" cellpadding="1" cellspacing="0" id="towerResult"></table>
+</body>
+
+<script>
+function calculateTower() {
+    var start = document.getElementById('start').value;
+    var height = document.getElementById('height').value;
+    var result = '';
+
+    if (!isNaN(start) && !isNaN(height)) {
+        start = parseInt(start);
+        height = parseInt(height);
+        var current = start;
+
+        for (var i = 1; i <= height; i++) {
+            current *= i;
+            result += '<tr><td>' + current + '</td></tr>';
+        }
+
+        for (var i = height; i > 1; i--) {
+            current /= i;
+            result += '<tr><td>' + Math.round(current) + '</td></tr>';
+        }
+    } else {
+        result = '<tr><td>Bitte gültige Zahlen eingeben</td></tr>';
+    }
+
+    document.getElementById('towerResult').innerHTML = result;
+}
+</script>
+
+</html>

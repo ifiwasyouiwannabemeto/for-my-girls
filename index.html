@@ -37,6 +37,11 @@
             max-width: 90%;
             height: auto;
         }
+        .result-message {
+            margin: 20px auto;
+            font-size: 16px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -46,7 +51,7 @@
         <p>Turmhöhe:<br><input type="text" id="height"></p>
         <p><input type="button" value="Berechnen" onclick="calculateTower()"></p>
     </form>
-    <!-- Bild nach den Eingabefeldern einfügen -->
+    <div id="message" class="result-message"></div>
     <img src="https://raw.githubusercontent.com/ifiwasyouiwannabemeto/for-my-girls/main/hund.jpg" alt="Unser Hund">
     <table border="1" cellpadding="1" cellspacing="0" id="towerResult"></table>
 </body>
@@ -56,23 +61,32 @@ function calculateTower() {
     var start = document.getElementById('start').value;
     var height = document.getElementById('height').value;
     var result = '';
+    var operation = '';
 
-    if (!isNaN(start) && !isNaN(height)) {
+    if (!isNaN(start) && !isNaN(height) && height >= 2) {
         start = parseInt(start);
         height = parseInt(height);
         var current = start;
 
-        for (var i = 1; i <= height; i++) {
+        // Multiplikation
+        for (var i = 2; i <= height; i++) {
             current *= i;
-            result += '<tr><td>' + current + '</td></tr>';
+            result += '<tr><td>' + start + ' x ' + i + '</td><td>' + current + '</td></tr>';
+            start = current; // Update start for the next iteration
         }
 
-        for (var i = height; i > 1; i--) {
+        // Division
+        for (var i = 2; i <= height; i++) {
             current /= i;
-            result += '<tr><td>' + Math.round(current) + '</td></tr>';
+            result += '<tr><td>' + start + ' : ' + i + '</td><td>' + Math.round(current) + '</td></tr>';
+            start = current; // Update start for the next iteration
         }
+
+        // Nachricht unter dem Berechnen-Button
+        document.getElementById('message').innerHTML = 'Bella hat deine Aufgabe erledigt - du findest die Lösungen nun unter ihrem Bild.';
     } else {
-        result = '<tr><td>Bitte gültige Zahlen eingeben</td></tr>';
+        result = '<tr><td colspan="2">Bitte gültige Zahlen eingeben und sicherstellen, dass die Turmhöhe mindestens 2 ist</td></tr>';
+        document.getElementById('message').innerHTML = ''; // Nachricht verbergen, falls Eingaben ungültig sind
     }
 
     document.getElementById('towerResult').innerHTML = result;

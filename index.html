@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Zapfenrechner von Mama für S & F</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0e8f2;
+            font-family: 'Roboto', sans-serif;
+            background-color: #fdf6e3;
             text-align: center;
             margin: 0;
             padding: 20px;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
         }
         table {
             margin: 20px auto;
             border-collapse: collapse;
+            width: 90%;
+            max-width: 600px;
         }
         td, th {
-            border: 1px solid #999;
+            border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
         }
@@ -24,36 +37,40 @@
             padding: 10px;
             margin-top: 5px;
             border-radius: 5px;
-            border: 1px solid #999;
+            border: 1px solid #ddd;
+            width: calc(100% - 22px); /* Adjust input width to fit form */
+            box-sizing: border-box; /* Include padding and border in element's width */
         }
         input[type="button"] {
-            background-color: #ff85a2;
+            background-color: #4CAF50;
             color: white;
-            cursor: pointer;
             font-weight: bold;
         }
         input[type="button"]:hover {
-            background-color: #ff6090;
+            background-color: #45a049;
         }
         img {
             margin-top: 20px;
+            border-radius: 10px;
             max-width: 90%;
             height: auto;
         }
         .result-message, .hint {
-            margin: 20px auto;
+            margin-top: 20px;
             font-size: 16px;
-            color: #333;
         }
         .hint {
             font-size: 14px;
             color: #888;
         }
+        footer {
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
-    <h2>❤️ Zapfenrechner von Mama für S & F ❤️</h2>
-    <form name="turm" onsubmit="return false;">
+    <h2>Zapfenrechner von Mama für S & F</h2>
+    <form>
         <p>Anfangswert:<br><input type="text" id="start" required></p>
         <p>Zapfenhöhe:<br><input type="text" id="height" required></p>
         <p><input type="button" value="Berechnen" onclick="calculateTower()"></p>
@@ -95,7 +112,7 @@
         }
     </script>
     <footer>
-        <p class="copyright">&copy; 2023 Sabrina Kaiser</p>
+        <p class="copyright">&copy; 2024 S. K.</p>
     </footer>
 </body>
 </html>

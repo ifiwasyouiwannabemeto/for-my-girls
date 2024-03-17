@@ -18,43 +18,36 @@
             padding: 8px;
             text-align: center;
         }
-        input[type="text"] {
+        input[type="text"], input[type="button"] {
             padding: 10px;
+            margin-top: 5px;
             border-radius: 5px;
             border: 1px solid #999;
         }
         input[type="button"] {
-            padding: 10px 20px;
             background-color: #ff85a2;
-            border: none;
-            border-radius: 5px;
             color: white;
             cursor: pointer;
-            font-size: 16px;
         }
         input[type="button"]:hover {
             background-color: #ff6090;
         }
-        h2 {
-            color: #ff85a2;
-            font-family: 'Arial', sans-serif;
-        }
         img {
             margin-top: 20px;
-            max-width: 90%; /* Passt die Bildgröße an, damit es nicht zu breit wird */
-            height: auto; /* Erhält das Seitenverhältnis */
+            max-width: 90%;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <h2>❤️ Turmberechnung von Mama für S & F ❤️</h2>
-    <!-- Bild einfügen -->
-    <img src="https://raw.githubusercontent.com/ifiwasyouiwannabemeto/for-my-girls/main/hund.jpg" alt="Unser Hund">
     <form name="turm">
         <p>Anfangswert:<br><input type="text" id="start"></p>
         <p>Turmhöhe:<br><input type="text" id="height"></p>
         <p><input type="button" value="Berechnen" onclick="calculateTower()"></p>
     </form>
+    <!-- Bild nach den Eingabefeldern einfügen -->
+    <img src="https://raw.githubusercontent.com/ifiwasyouiwannabemeto/for-my-girls/main/hund.jpg" alt="Unser Hund">
     <table border="1" cellpadding="1" cellspacing="0" id="towerResult"></table>
 </body>
 
